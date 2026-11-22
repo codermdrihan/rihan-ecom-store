@@ -1,0 +1,76 @@
+/* Custom CSS for OmniStore Storefront Template */
+
+@layer utilities {
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0D9488;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Card hover elevation */
+.product-card {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08);
+}
+
+/* Size pill button active style */
+.size-filter-pill.active,
+.pdp-size-btn.active {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    border-color: #0F172A;
+}
+
+/* Category filter pill active */
+.cat-pill-btn.active {
+    border-color: #0D9488;
+    background-color: #F0FDFA;
+}
+
+/* Drawer open state */
+body.drawer-open,
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Sticky bar active */
+#sticky-buy-bar.visible {
+    transform: translateY(0);
+}
+
+/* Modals visible state */
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content.visible {
+    transform: scale(1);
+}
+
+/* Ticker text pulse */
+@keyframes tickerSlide {
+    0% { transform: translateY(100%); opacity: 0; }
+    10% { transform: translateY(0); opacity: 1; }
+    90% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100%); opacity: 0; }
+}

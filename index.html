@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIHAN ECOM STORE — Next-Gen Premium Shopping</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#F0FDFA',
+                            100: '#CCFBF1',
+                            500: '#0D9488',
+                            600: '#0F766E',
+                            900: '#134E4A'
+                        },
+                        dark: {
+                            900: '#090D16',
+                            800: '#111827',
+                            700: '#1F2937',
+                            600: '#374151'
+                        },
+                        accent: {
+                            cyan: '#00F0FF',
+                            orange: '#FF5A36',
+                            emerald: '#10B981',
+                            purple: '#8B5CF6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 font-sans selection:bg-brand-500 selection:text-white min-h-screen flex flex-col relative antialiased">
+
+    <!-- 1. SLIDING ANNOUNCEMENT TICKER -->
+    <div class="bg-dark-900 text-white text-xs font-medium py-2.5 px-4 relative z-40 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <button id="ticker-prev" class="p-1 hover:text-accent-cyan transition-colors" title="Previous announcement">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <div class="overflow-hidden flex-1 text-center">
+                <div id="ticker-content" class="transition-all duration-500 font-semibold tracking-wide flex items-center justify-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                    <span>⚡ RIHAN ECOM STORE MEGA LAUNCH: UP TO 50% OFF ELECTRONICS, STREETWEAR & FOOTWEAR!</span>
+                </div>
+            </div>
+            <button id="ticker-next" class="p-1 hover:text-accent-cyan transition-colors" title="Next announcement">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. MAIN HEADER -->
+    <header class="sticky top-0 left-0 w-full bg-white/95 backdrop-blur-md z-30 border-b border-slate-200 transition-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-700 hover:text-brand-600 rounded-lg">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-dark-900 text-white flex items-center justify-center font-display font-black text-xl shadow-md">
+                    R
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-dark-900 leading-none">RIHAN ECOM STORE</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-brand-600">Electronics &bull; Apparel &bull; Footwear</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
+                <a href="#catalog" class="hover:text-brand-600 transition-colors">All Products</a>
+                <a href="#catalog" data-filter-cat="Electronics" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-accent-purple"></i> Electronics
+                </a>
+                <a href="#catalog" data-filter-cat="Streetwear" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+                    <i data-lucide="shirt" class="w-3.5 h-3.5 text-accent-orange"></i> Streetwear
+                </a>
+                <a href="#catalog" data-filter-cat="Footwear" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+                    <i data-lucide="footprints" class="w-3.5 h-3.5 text-brand-600"></i> Footwear
+                </a>
+                <a href="#catalog" data-filter-cat="Accessories" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+                    <i data-lucide="watch" class="w-3.5 h-3.5 text-blue-600"></i> Accessories
+                </a>
+            </nav>
+
+            <!-- Utility Controls -->
+            <div class="flex items-center gap-3">
+                <!-- Predictive Search Button -->
+                <button id="open-search-btn" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium transition-all" title="Search catalog...">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Search gadgets, clothes, shoes...</span>
+                    <kbd class="hidden sm:inline text-[10px] bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-slate-500">Ctrl+K</kbd>
+                </button>
+
+                <!-- Currency Badge (BDT) -->
+                <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold font-mono">
+                    <span>Tk</span> BDT
+                </div>
+
+                <!-- Shopping Cart Drawer Trigger -->
+                <button id="open-cart-btn" class="relative p-2.5 rounded-xl bg-dark-900 text-white hover:bg-brand-600 transition-all flex items-center gap-2 shadow-sm">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-badge-count" class="w-5 h-5 rounded-full bg-accent-orange text-white text-[11px] font-bold flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. HERO PROMOTIONAL BANNER -->
+    <section class="relative bg-gradient-to-r from-dark-900 via-slate-900 to-dark-800 text-white overflow-hidden py-16 sm:py-24 px-6">
+        <div class="absolute inset-0 bg-[radial-gradient(#00F0FF_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+            <div class="max-w-xl text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/40 text-brand-100 text-xs font-bold tracking-wider uppercase mb-5">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                    Rihan Ecom Store &bull; Multi-Category Mega Drop 2026
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black font-display tracking-tight leading-tight mb-5">
+                    Premium Gear. <br>
+                    <span class="bg-gradient-to-r from-accent-cyan via-teal-200 to-white bg-clip-text text-transparent">Curated For Excellence.</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg mb-8 font-normal leading-relaxed">
+                    From cutting-edge wireless audio and smart electronics to authentic sneaker silhouettes and cyber streetwear. Instant Cash on Delivery across Bangladesh.
+                </p>
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                    <a href="#catalog" class="px-7 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm tracking-wide shadow-lg shadow-brand-500/30 transition-all flex items-center gap-2">
+                        Browse Full Store <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#catalog" data-filter-cat="Electronics" class="px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-accent-cyan"></i> Trending Gadgets
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Floating Visual Showcase -->
+            <div class="relative w-full max-w-md flex items-center justify-center">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-brand-500/30 to-accent-cyan/20 rounded-full blur-3xl"></div>
+                <div class="relative rounded-3xl bg-white/5 border border-white/10 p-6 backdrop-blur-xl shadow-2xl text-center w-full">
+                    <img id="hero-showcase-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Wireless ANC Studio Headphones" class="w-full h-64 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500">
+                    <div class="mt-4 flex items-center justify-between text-left">
+                        <div>
+                            <span class="text-xs font-mono text-accent-cyan uppercase">Spotlight Electronics</span>
+                            <h4 class="font-bold text-white text-base">AcousticPro ANC Wireless Headphones</h4>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-slate-400 line-through">Tk 4,999</span>
+                            <div class="font-bold text-brand-100 text-lg">Tk 2,899</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. QUICK CATEGORY STRIP -->
+    <section class="py-10 px-4 sm:px-6 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <button data-cat="Electronics" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Electronics</div>
+                        <div class="text-xs text-slate-500">Audio, Watches & Gear</div>
+                    </div>
+                </button>
+
+                <button data-cat="Streetwear" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-800 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="shirt" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Streetwear</div>
+                        <div class="text-xs text-slate-500">Hoodies & Jackets</div>
+                    </div>
+                </button>
+
+                <button data-cat="Footwear" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
+                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="footprints" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Footwear</div>
+                        <div class="text-xs text-slate-500">Sneakers & Runners</div>
+                    </div>
+                </button>
+
+                <button data-cat="Accessories" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="glasses" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Accessories</div>
+                        <div class="text-xs text-slate-500">Shades, Bags & Tech</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. MAIN CATALOG WITH DYNAMIC FILTERS & SORTING -->
+    <section id="catalog" class="py-14 px-4 sm:px-6 flex-1 max-w-7xl mx-auto w-full">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Left Filter Sidebar -->
+            <aside class="w-full lg:w-72 flex-shrink-0">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 sticky top-28 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                        <h3 class="font-display font-bold text-base text-dark-900 flex items-center gap-2">
+                            <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-600"></i> Filters
+                        </h3>
+                        <button id="reset-filters-btn" class="text-xs font-semibold text-brand-600 hover:underline">Reset All</button>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Categories</label>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="cat-filter" value="All" checked class="text-brand-600 focus:ring-brand-500">
+                                <span class="font-medium text-slate-800">All Products</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="cat-filter" value="Electronics" class="text-brand-600 focus:ring-brand-500">
+                                <span>Electronics & Gadgets</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="cat-filter" value="Streetwear" class="text-brand-600 focus:ring-brand-500">
+                                <span>Streetwear & Apparel</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="cat-filter" value="Footwear" class="text-brand-600 focus:ring-brand-500">
+                                <span>Footwear & Sneakers</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="cat-filter" value="Accessories" class="text-brand-600 focus:ring-brand-500">
+                                <span>Accessories & Gear</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Max Price Slider -->
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span class="text-slate-500 uppercase tracking-wider">Max Price</span>
+                            <span id="price-slider-label" class="text-brand-600 font-mono">Tk 6,000</span>
+                        </div>
+                        <input type="range" id="price-slider" min="500" max="6000" step="100" value="6000" class="w-full accent-brand-600 cursor-pointer">
+                    </div>
+
+                    <!-- Availability Toggle -->
+                    <div class="pt-2 border-t border-slate-100">
+                        <label class="flex items-center justify-between text-sm cursor-pointer">
+                            <span class="font-medium text-slate-700">In Stock Only</span>
+                            <input type="checkbox" id="stock-only-toggle" class="rounded text-brand-600 focus:ring-brand-500 w-4 h-4">
+                        </label>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- Product Grid & Toolbar -->
+            <div class="flex-1">
+                <!-- Toolbar -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-4 mb-6 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+                    <div class="text-sm font-semibold text-slate-600">
+                        Showing <span id="product-count-display" class="font-bold text-dark-900">0</span> items in <span id="current-category-label" class="text-brand-600">All Products</span>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <label class="text-xs font-medium text-slate-500 hidden sm:inline">Sort by:</label>
+                        <select id="sort-select" class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:outline-none focus:border-brand-500">
+                            <option value="featured">Featured Picks</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="discount">Biggest Discount (%)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Product Cards Injected by JavaScript -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-200 p-8">
+                    <i data-lucide="package-search" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
+                    <h3 class="font-display font-bold text-lg text-dark-900 mb-1">No Items Match Your Filters</h3>
+                    <p class="text-slate-500 text-sm mb-4">Try clearing filters or expanding your price range.</p>
+                    <button id="empty-reset-btn" class="px-5 py-2 rounded-xl bg-brand-500 text-white font-semibold text-xs">Reset All Filters</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. SLIDE-OUT MINI-CART DRAWER -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-600"></i>
+                <h3 class="font-display font-bold text-lg text-dark-900">Your Cart</h3>
+                <span id="drawer-item-count" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">0</span>
+            </div>
+            <button id="close-cart-btn" class="p-2 rounded-lg text-slate-400 hover:text-dark-900 hover:bg-slate-100 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Free Delivery Progress Bar -->
+        <div class="bg-brand-50 px-6 py-3 border-b border-brand-100">
+            <div class="flex justify-between text-xs font-semibold text-brand-900 mb-1.5">
+                <span id="free-shipping-text">Add Tk 2,500 for FREE Delivery!</span>
+                <span class="text-brand-600 font-bold">Free at Tk 3,000</span>
+            </div>
+            <div class="w-full h-1.5 bg-brand-200 rounded-full overflow-hidden">
+                <div id="free-shipping-bar" class="h-full bg-brand-600 transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Dynamic Cart Items Rendered Here -->
+        </div>
+
+        <!-- Cart Footer & In-Drawer Voucher -->
+        <div class="border-t border-slate-100 p-6 bg-slate-50 space-y-4">
+            <!-- In-Drawer Discount Input -->
+            <div class="flex gap-2">
+                <input type="text" id="discount-input" placeholder="Voucher Code (Try 'RIHAN10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs uppercase font-mono tracking-wider focus:outline-none focus:border-brand-500">
+                <button id="apply-discount-btn" class="px-4 py-2.5 rounded-xl bg-dark-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors">Apply</button>
+            </div>
+            <div id="discount-badge" class="hidden text-xs font-semibold text-emerald-600 flex items-center justify-between">
+                <span>&check; 10% Discount Applied!</span>
+                <button id="remove-discount-btn" class="text-rose-500 hover:underline">Remove</button>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="space-y-1.5 text-xs text-slate-600">
+                <div class="flex justify-between">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal" class="font-mono font-bold text-slate-800">Tk 0</span>
+                </div>
+                <div id="discount-row" class="hidden flex justify-between text-emerald-600">
+                    <span>Discount:</span>
+                    <span id="cart-discount" class="font-mono font-bold">-Tk 0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Estimated Shipping:</span>
+                    <span id="cart-shipping" class="font-mono font-semibold text-slate-800">Tk 70 (Dhaka)</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-dark-900 pt-2 border-t border-slate-200">
+                    <span>Total Amount:</span>
+                    <span id="cart-total" class="font-mono text-brand-600 font-extrabold">Tk 0</span>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button id="proceed-cod-btn" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
+                <i data-lucide="truck" class="w-4 h-4"></i> Cash on Delivery Checkout &rarr;
+            </button>
+        </div>
+    </aside>
+
+    <!-- 7. PERSISTENT STICKY BUY BAR (Scroll Activated) -->
+    <div id="sticky-buy-bar" class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 sm:p-4 z-40 transform translate-y-full transition-transform duration-300 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img id="sticky-thumb" src="" alt="Thumbnail" class="w-12 h-12 rounded-xl object-cover border border-slate-200">
+                <div>
+                    <h4 id="sticky-title" class="font-bold text-dark-900 text-xs sm:text-sm line-clamp-1">Product Title</h4>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span id="sticky-price" class="font-bold text-brand-600 font-mono">Tk 1,799</span>
+                        <span class="text-slate-400">&bull; Option:</span>
+                        <span id="sticky-selected-size" class="font-bold text-dark-900 font-mono">Standard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="sticky-add-btn" class="px-5 py-2.5 rounded-xl bg-dark-900 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. PRODUCT DETAIL MODAL (PDP View) -->
+    <div id="pdp-modal-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div id="pdp-modal" class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300 relative">
+            <button id="close-pdp-btn" class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 z-10 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
+                <!-- Gallery -->
+                <div>
+                    <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 relative mb-3 group">
+                        <img id="pdp-main-img" src="" alt="Product" class="w-full h-72 object-cover">
+                        <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-rose-500 text-white text-[11px] font-bold uppercase tracking-wider" id="pdp-badge">
+                            50% OFF
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-slate-500 justify-center">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Verified Rihan Quality &bull; 7-Day Replacement
+                    </div>
+                </div>
+
+                <!-- Product Purchase Form -->
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span id="pdp-category" class="text-xs font-mono font-bold text-brand-600 uppercase tracking-widest">ELECTRONICS</span>
+                        <h2 id="pdp-title" class="text-2xl font-display font-extrabold text-dark-900 mt-1 mb-2">Product Name</h2>
+                        
+                        <!-- Price Breakdown -->
+                        <div class="flex items-baseline gap-3 mb-4">
+                            <span id="pdp-sale-price" class="text-2xl font-black font-mono text-dark-900">Tk 1,799</span>
+                            <span id="pdp-regular-price" class="text-sm font-mono text-slate-400 line-through">Tk 3,499</span>
+                            <span id="pdp-savings" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Save Tk 1,700</span>
+                        </div>
+
+                        <!-- Real-time Low Stock Warning -->
+                        <div class="p-2.5 rounded-xl bg-orange-50 border border-orange-200 text-orange-800 text-xs font-semibold flex items-center gap-2 mb-4">
+                            <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
+                            <span id="pdp-stock-indicator">🔥 Low Stock: Only 3 units remaining!</span>
+                        </div>
+
+                        <!-- Variant Selector (Sizes, Colors, or Specs) -->
+                        <div class="mb-5">
+                            <div class="flex justify-between items-center text-xs font-bold mb-2">
+                                <span id="pdp-variant-label" class="text-slate-700 uppercase tracking-wider">Select Variant / Size</span>
+                            </div>
+                            <div id="pdp-size-options" class="flex flex-wrap gap-2">
+                                <!-- Dynamic Variant Buttons -->
+                            </div>
+                            <div class="mt-2 text-[11px] font-mono text-slate-400">
+                                SKU: <span id="pdp-sku-display" class="font-bold text-slate-700">RE-PROD-01</span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p id="pdp-desc" class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Engineered with premium materials for maximum durability and everyday performance.
+                        </p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-3">
+                        <button id="pdp-add-cart-btn" class="w-full py-3.5 rounded-xl bg-dark-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add To Shopping Cart
+                        </button>
+                        <button id="pdp-buy-now-btn" class="w-full py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
+                            <i data-lucide="zap" class="w-4 h-4"></i> Fast Cash on Delivery Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. PREDICTIVE SEARCH MODAL -->
+    <div id="search-modal-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-start justify-center pt-20 px-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl p-6 relative">
+            <div class="flex items-center gap-3 pb-4 border-b border-slate-200">
+                <i data-lucide="search" class="w-5 h-5 text-brand-600"></i>
+                <input type="text" id="predictive-search-input" placeholder="Type gadget, clothing, shoes, or accessory..." class="flex-1 text-base text-dark-900 focus:outline-none placeholder-slate-400 font-medium">
+                <button id="close-search-btn" class="p-1.5 rounded-lg text-slate-400 hover:text-dark-900 hover:bg-slate-100">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <!-- Live Results -->
+            <div id="search-results-list" class="mt-4 max-h-80 overflow-y-auto space-y-2">
+                <div class="text-xs text-slate-400 py-6 text-center">Start typing to search Rihan Ecom Store instantly...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. 1-PAGE FAST COD CHECKOUT MODAL -->
+    <div id="cod-checkout-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="close-cod-btn" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-2 mb-1 text-brand-600 font-bold text-xs uppercase tracking-widest">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Secure Cash On Delivery
+            </div>
+            <h3 class="text-xl font-display font-extrabold text-dark-900 mb-1">Expedited Checkout</h3>
+            <p class="text-xs text-slate-500 mb-5">Pay cash to delivery courier upon package arrival.</p>
+
+            <form id="cod-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
+                    <input type="text" required placeholder="e.g. Md Rihan" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile Number (For Courier SMS)</label>
+                    <input type="tel" required placeholder="018XXXXXXXX" pattern="[0-9]{11}" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-mono focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Delivery Destination</label>
+                    <select id="checkout-city" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                        <option value="70">Inside Dhaka (Tk 70 - 24-48 Hours)</option>
+                        <option value="130">Outside Dhaka (Tk 130 - 48-72 Hours)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Street Address & Area</label>
+                    <textarea rows="2" required placeholder="House, Road, Sector/Thana, City" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                </div>
+
+                <!-- Order Total Summary -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+                    <div class="flex justify-between text-slate-600">
+                        <span>Items:</span>
+                        <span id="cod-items-sum" class="font-bold text-slate-800">Tk 0</span>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Courier Shipping:</span>
+                        <span id="cod-shipping-sum" class="font-bold text-slate-800">Tk 70</span>
+                    </div>
+                    <div class="flex justify-between text-sm font-bold text-dark-900 pt-1.5 border-t border-slate-200">
+                        <span>Payable Upon Delivery:</span>
+                        <span id="cod-payable-sum" class="font-mono text-brand-600 font-extrabold text-base">Tk 0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i> Confirm Order Now
+                </button>
+            </form>
+
+            <!-- Order Success Confirmation -->
+            <div id="cod-success-box" class="hidden text-center py-6">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-display font-extrabold text-dark-900 mb-1">Order Confirmed!</h4>
+                <p class="text-xs text-slate-500 mb-4">Tracking Code: <strong id="generated-tracking-code" class="font-mono text-brand-600">RE-2026-9812</strong></p>
+                <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-600 mb-6">
+                    Courier dispatch SMS has been transmitted. Prepare exact cash upon delivery.
+                </div>
+                <button id="finish-order-btn" class="px-6 py-2.5 rounded-xl bg-dark-900 text-white font-semibold text-xs">Back to Store</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11. FOOTER -->
+    <footer class="bg-dark-900 text-slate-400 py-16 px-6 border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-xs">
+            <div>
+                <div class="flex items-center gap-2 text-white font-display font-bold text-lg mb-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center">R</div>
+                    RIHAN ECOM STORE
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Your premier multi-category digital marketplace for high-end electronics, modern streetwear, authentic footwear, and tech accessories.
+                </p>
+                <div class="flex items-center gap-3 text-white">
+                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="facebook" class="w-4 h-4"></i></span>
+                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="instagram" class="w-4 h-4"></i></span>
+                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="youtube" class="w-4 h-4"></i></span>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-4">Categories</h4>
+                <ul class="space-y-2">
+                    <li><a href="#catalog" class="hover:text-white transition-colors">Smart Electronics & Gadgets</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition-colors">Cyber Streetwear & Hoodies</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition-colors">Sneakers & Performance Shoes</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition-colors">Polarized Shades & Gear</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-4">Customer Care</h4>
+                <ul class="space-y-2">
+                    <li>Customer Support: <strong class="text-white">+880 1886-888841</strong></li>
+                    <li>Live Assistance: 10:00 AM – 10:00 PM</li>
+                    <li>Email: support@rihanecom.store</li>
+                    <li>7-Day Replacement Guarantee</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-4">Store Guarantee</h4>
+                <p class="text-slate-400 leading-relaxed mb-3">
+                    Every product in Rihan Ecom Store undergoes strict quality assurance before packaging and courier dispatch.
+                </p>
+                <div class="text-[11px] text-brand-100 bg-brand-900/40 border border-brand-500/30 p-2.5 rounded-xl font-mono">
+                    ⚡ Powered by Rihan OmniStore Engine v2.0
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-10 mt-10 border-t border-white/5 text-center text-slate-500 text-[11px]">
+            &copy; 2026 Rihan Ecom Store. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
