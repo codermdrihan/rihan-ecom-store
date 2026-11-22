@@ -170,7 +170,7 @@ const PRODUCTS = [
         comparePrice: 2200,
         discount: 45,
         image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
-        variants: ["Gunmetal / Smoke", "Gold / Amber", "Matte Black / Mirrored"],
+        variants: ["Gunmetal / Smoke", "Gold / Amber", "Matte Black"],
         variantType: "Color",
         inStock: true,
         stockCount: 9,
@@ -179,7 +179,7 @@ const PRODUCTS = [
     },
     {
         id: "prod-acc-2",
-        title: "UrbanTech Waterproof Commuter Backpack (25L)",
+        title: "UrbanTech Waterproof Commuter Backpack",
         category: "Accessories",
         price: 2199,
         comparePrice: 3800,
@@ -222,7 +222,7 @@ function rotateTicker(direction = 1) {
     tickerIndex = (tickerIndex + direction + TICKER_MESSAGES.length) % TICKER_MESSAGES.length;
     const tickerContent = document.getElementById('ticker-content');
     if (tickerContent) {
-        tickerContent.innerHTML = `<span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span><span>${TICKER_MESSAGES[tickerIndex]}</span>`;
+        tickerContent.innerHTML = `<span class="w-2 h-2 rounded-full bg-accent-orange animate-ping flex-shrink-0"></span><span class="truncate">${TICKER_MESSAGES[tickerIndex]}</span>`;
     }
 }
 setInterval(() => rotateTicker(1), 4500);
@@ -258,11 +258,9 @@ function renderProductGrid() {
     const grid = document.getElementById('product-grid');
     const emptyState = document.getElementById('empty-state');
     const countDisplay = document.getElementById('product-count-display');
-    const catLabel = document.getElementById('current-category-label');
     const filtered = getFilteredProducts();
 
     if (countDisplay) countDisplay.textContent = filtered.length;
-    if (catLabel) catLabel.textContent = state.filters.category === "All" ? "All Products" : state.filters.category;
 
     if (filtered.length === 0) {
         grid.innerHTML = '';
@@ -272,54 +270,41 @@ function renderProductGrid() {
 
     emptyState?.classList.add('hidden');
     grid.innerHTML = filtered.map(prod => `
-        <div class="product-card bg-white rounded-3xl border border-slate-200 overflow-hidden flex flex-col justify-between group shadow-sm">
+        <div class="product-card bg-white rounded-2xl sm:rounded-3xl border border-slate-200 overflow-hidden flex flex-col justify-between group shadow-sm">
             <div class="relative overflow-hidden bg-slate-100 cursor-pointer" onclick="openPdpModal('${prod.id}')">
-                <img src="${prod.image}" alt="${prod.title}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute top-3 left-3 flex flex-col gap-1.5">
-                    <span class="px-2.5 py-1 rounded-full bg-rose-500 text-white font-bold text-[10px] uppercase tracking-wider">
+                <img src="${prod.image}" alt="${prod.title}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';" class="w-full h-36 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-2 left-2 flex flex-col gap-1">
+                    <span class="px-2 py-0.5 rounded-full bg-rose-500 text-white font-bold text-[9px] sm:text-[10px] uppercase tracking-wider">
                         ${prod.discount}% OFF
                     </span>
                     ${!prod.inStock ? `
-                        <span class="px-2.5 py-1 rounded-full bg-slate-800 text-white font-bold text-[10px] uppercase">
+                        <span class="px-2 py-0.5 rounded-full bg-slate-800 text-white font-bold text-[9px] uppercase">
                             Out of Stock
-                        </span>
-                    ` : prod.stockCount <= 3 ? `
-                        <span class="px-2.5 py-1 rounded-full bg-amber-500 text-white font-bold text-[10px] uppercase">
-                            Only ${prod.stockCount} Left
                         </span>
                     ` : ''}
                 </div>
             </div>
 
-            <div class="p-5 flex-1 flex flex-col justify-between">
+            <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between">
                 <div>
-                    <span class="text-[11px] font-mono font-bold text-brand-600 uppercase tracking-wider">${prod.category}</span>
-                    <h4 class="font-display font-bold text-dark-900 text-base mt-1 mb-2 group-hover:text-brand-600 transition-colors line-clamp-1 cursor-pointer" onclick="openPdpModal('${prod.id}')">
+                    <span class="text-[9px] sm:text-[11px] font-mono font-bold text-brand-600 uppercase tracking-wider">${prod.category}</span>
+                    <h4 class="font-display font-bold text-dark-900 text-xs sm:text-base mt-0.5 mb-1.5 group-hover:text-brand-600 transition-colors line-clamp-1 cursor-pointer" onclick="openPdpModal('${prod.id}')">
                         ${prod.title}
                     </h4>
 
                     <!-- Price -->
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <span class="font-display font-extrabold text-lg text-dark-900">Tk ${prod.price.toLocaleString()}</span>
-                        <span class="text-xs text-slate-400 line-through font-mono">Tk ${prod.comparePrice.toLocaleString()}</span>
-                    </div>
-
-                    <!-- Variant Badges -->
-                    <div class="flex items-center gap-1.5 flex-wrap mb-4">
-                        <span class="text-[10px] text-slate-400 font-mono">${prod.variantType}:</span>
-                        ${prod.variants.slice(0, 3).map(v => `
-                            <span class="px-2 py-0.5 rounded bg-slate-100 text-[10px] font-mono text-slate-700 font-medium">${v}</span>
-                        `).join('')}
-                        ${prod.variants.length > 3 ? `<span class="text-[10px] text-slate-400 font-mono">+${prod.variants.length - 3}</span>` : ''}
+                    <div class="flex items-baseline gap-1.5 mb-2.5">
+                        <span class="font-display font-extrabold text-xs sm:text-lg text-dark-900">Tk ${prod.price.toLocaleString()}</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 line-through font-mono">Tk ${prod.comparePrice.toLocaleString()}</span>
                     </div>
                 </div>
 
-                <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
-                    <button onclick="openPdpModal('${prod.id}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50 text-slate-700 font-bold text-xs transition-colors flex items-center justify-center gap-1">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i> Details
+                <div class="pt-2 sm:pt-3 border-t border-slate-100 flex items-center gap-1.5 sm:gap-2">
+                    <button onclick="openPdpModal('${prod.id}')" class="flex-1 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50 text-slate-700 font-bold text-[10px] sm:text-xs transition-colors flex items-center justify-center gap-1">
+                        <i data-lucide="eye" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i> Details
                     </button>
-                    <button onclick="quickAddToCart('${prod.id}')" ${!prod.inStock ? 'disabled' : ''} class="px-4 py-2.5 rounded-xl bg-dark-900 hover:bg-brand-600 disabled:opacity-40 text-white font-bold text-xs transition-colors flex items-center gap-1.5 shadow-sm">
-                        <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Add
+                    <button onclick="quickAddToCart('${prod.id}')" ${!prod.inStock ? 'disabled' : ''} class="p-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl bg-dark-900 hover:bg-brand-600 disabled:opacity-40 text-white font-bold text-[10px] sm:text-xs transition-colors flex items-center justify-center gap-1 shadow-sm">
+                        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5"></i> <span class="hidden xs:inline">Add</span>
                     </button>
                 </div>
             </div>
@@ -349,6 +334,7 @@ function closeCartDrawer() {
 function updateCartUI() {
     const container = document.getElementById('cart-items-container');
     const badge = document.getElementById('cart-badge-count');
+    const bottomCartBadge = document.getElementById('bottom-cart-badge');
     const drawerCount = document.getElementById('drawer-item-count');
     const subtotalEl = document.getElementById('cart-subtotal');
     const totalEl = document.getElementById('cart-total');
@@ -359,6 +345,7 @@ function updateCartUI() {
 
     const totalItems = state.cart.reduce((sum, item) => sum + item.qty, 0);
     if (badge) badge.textContent = totalItems;
+    if (bottomCartBadge) bottomCartBadge.textContent = totalItems;
     if (drawerCount) drawerCount.textContent = totalItems;
 
     if (state.cart.length === 0) {
@@ -380,13 +367,13 @@ function updateCartUI() {
     // Render items
     container.innerHTML = state.cart.map((item, idx) => `
         <div class="flex items-center gap-3 p-3 rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <img src="${item.image}" alt="${item.title}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';" class="w-16 h-16 rounded-xl object-cover">
-            <div class="flex-1">
-                <h5 class="font-bold text-xs text-dark-900 line-clamp-1">${item.title}</h5>
-                <div class="text-[11px] font-mono text-slate-400 mt-0.5">Option: <span class="font-bold text-slate-700">${item.variant}</span></div>
+            <img src="${item.image}" alt="${item.title}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover flex-shrink-0">
+            <div class="flex-1 min-w-0">
+                <h5 class="font-bold text-xs text-dark-900 truncate">${item.title}</h5>
+                <div class="text-[10px] sm:text-[11px] font-mono text-slate-400 mt-0.5 truncate">Option: <span class="font-bold text-slate-700">${item.variant}</span></div>
                 <div class="font-bold text-xs text-dark-900 mt-1">Tk ${item.price.toLocaleString()}</div>
             </div>
-            <div class="flex flex-col items-end gap-2">
+            <div class="flex flex-col items-end gap-1.5 flex-shrink-0">
                 <button onclick="removeCartItem(${idx})" class="text-slate-400 hover:text-rose-500 transition-colors p-1" title="Remove">
                     <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                 </button>
@@ -512,7 +499,7 @@ function openPdpModal(productId) {
     // Variant Selector Buttons
     const variantContainer = document.getElementById('pdp-size-options');
     variantContainer.innerHTML = prod.variants.map(v => `
-        <button class="pdp-size-btn px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold font-mono ${v === state.activePdpVariant ? 'active' : ''}" onclick="selectPdpVariant('${v}')">
+        <button class="pdp-size-btn px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 text-xs font-bold font-mono ${v === state.activePdpVariant ? 'active' : ''}" onclick="selectPdpVariant('${v}')">
             ${v}
         </button>
     `).join('');
@@ -567,7 +554,7 @@ function updateStickyBar(prod, variant) {
 // Sticky bar scroll trigger
 window.addEventListener('scroll', () => {
     const stickyBar = document.getElementById('sticky-buy-bar');
-    if (window.scrollY > 450) {
+    if (window.scrollY > 400) {
         stickyBar?.classList.add('visible');
     } else {
         stickyBar?.classList.remove('visible');
@@ -595,13 +582,13 @@ function handlePredictiveSearch(queryRaw) {
     }
 
     list.innerHTML = matches.map(m => `
-        <div class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors" onclick="closeSearchModal(); openPdpModal('${m.id}')">
-            <img src="${m.image}" alt="${m.title}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';" class="w-12 h-12 rounded-lg object-cover">
-            <div class="flex-1">
-                <h6 class="font-bold text-xs text-dark-900">${m.title}</h6>
-                <div class="text-[10px] font-mono text-slate-400">${m.category} &bull; ${m.variants.join(', ')}</div>
+        <div class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors" onclick="closeSearchModal(); openPdpModal('${m.id}')">
+            <img src="${m.image}" alt="${m.title}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';" class="w-12 h-12 rounded-lg object-cover flex-shrink-0">
+            <div class="flex-1 min-w-0">
+                <h6 class="font-bold text-xs text-dark-900 truncate">${m.title}</h6>
+                <div class="text-[10px] font-mono text-slate-400 truncate">${m.category} &bull; ${m.variants.join(', ')}</div>
             </div>
-            <div class="font-bold text-xs text-brand-600 font-mono">Tk ${m.price.toLocaleString()}</div>
+            <div class="font-bold text-xs text-brand-600 font-mono flex-shrink-0">Tk ${m.price.toLocaleString()}</div>
         </div>
     `).join('');
 }
@@ -642,12 +629,73 @@ function closeCodCheckout() {
     document.getElementById('cod-checkout-overlay')?.classList.add('opacity-0', 'pointer-events-none');
 }
 
-// 9. ATTACH EVENT LISTENERS ON DOM LOAD
+// 9. MOBILE NAVIGATION & FILTER DRAWER CONTROLLERS
+function openMobileNav() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    drawer?.classList.remove('-translate-x-full');
+    overlay?.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.classList.add('drawer-open');
+}
+
+function closeMobileNav() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    drawer?.classList.add('-translate-x-full');
+    overlay?.classList.add('opacity-0', 'pointer-events-none');
+    document.body.classList.remove('drawer-open');
+}
+
+function openFilterDrawer() {
+    const sidebar = document.getElementById('filter-sidebar');
+    const overlay = document.getElementById('filter-drawer-overlay');
+    sidebar?.classList.remove('-translate-x-full');
+    overlay?.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.classList.add('drawer-open');
+}
+
+function closeFilterDrawer() {
+    const sidebar = document.getElementById('filter-sidebar');
+    const overlay = document.getElementById('filter-drawer-overlay');
+    sidebar?.classList.add('-translate-x-full');
+    overlay?.classList.add('opacity-0', 'pointer-events-none');
+    document.body.classList.remove('drawer-open');
+}
+
+// 10. ATTACH EVENT LISTENERS ON DOM LOAD
 document.addEventListener('DOMContentLoaded', () => {
     // Initial Render
     renderProductGrid();
     updateCartUI();
     updateStickyBar(PRODUCTS[0], PRODUCTS[0].variants[0]);
+
+    // Mobile Navigation Drawer Listeners
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', openMobileNav);
+    document.getElementById('close-mobile-nav-btn')?.addEventListener('click', closeMobileNav);
+    document.getElementById('mobile-nav-overlay')?.addEventListener('click', closeMobileNav);
+
+    document.querySelectorAll('.mobile-cat-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cat = btn.getAttribute('data-cat');
+            state.filters.category = cat;
+            const targetRadio = document.querySelector(`input[name="cat-filter"][value="${cat}"]`);
+            if (targetRadio) targetRadio.checked = true;
+            renderProductGrid();
+            closeMobileNav();
+            document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Mobile Filter Drawer Listeners
+    document.getElementById('open-filter-btn')?.addEventListener('click', openFilterDrawer);
+    document.getElementById('bottom-bar-filter-btn')?.addEventListener('click', openFilterDrawer);
+    document.getElementById('close-filter-drawer-btn')?.addEventListener('click', closeFilterDrawer);
+    document.getElementById('apply-filter-mobile-btn')?.addEventListener('click', closeFilterDrawer);
+    document.getElementById('filter-drawer-overlay')?.addEventListener('click', closeFilterDrawer);
+
+    // Mobile Bottom App Bar Listeners
+    document.getElementById('bottom-bar-search-btn')?.addEventListener('click', openSearchModal);
+    document.getElementById('bottom-bar-cart-btn')?.addEventListener('click', openCartDrawer);
 
     // Cart Toggles
     document.getElementById('open-cart-btn')?.addEventListener('click', openCartDrawer);
@@ -675,6 +723,8 @@ document.addEventListener('DOMContentLoaded', () => {
             closePdpModal();
             closeCartDrawer();
             closeCodCheckout();
+            closeMobileNav();
+            closeFilterDrawer();
         }
     });
 

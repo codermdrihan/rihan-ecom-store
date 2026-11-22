@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RIHAN ECOM STORE — Next-Gen Premium Shopping</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,45 +48,47 @@
         }
     </script>
 </head>
-<body class="bg-[#F8FAFC] text-slate-800 font-sans selection:bg-brand-500 selection:text-white min-h-screen flex flex-col relative antialiased">
+<body class="bg-[#F8FAFC] text-slate-800 font-sans selection:bg-brand-500 selection:text-white min-h-screen flex flex-col relative antialiased pb-20 md:pb-0">
 
     <!-- 1. SLIDING ANNOUNCEMENT TICKER -->
-    <div class="bg-dark-900 text-white text-xs font-medium py-2.5 px-4 relative z-40 border-b border-white/10">
+    <div class="bg-dark-900 text-white text-[11px] sm:text-xs font-medium py-2 sm:py-2.5 px-3 sm:px-4 relative z-40 border-b border-white/10">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <button id="ticker-prev" class="p-1 hover:text-accent-cyan transition-colors" title="Previous announcement">
-                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                <i data-lucide="chevron-left" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </button>
-            <div class="overflow-hidden flex-1 text-center">
-                <div id="ticker-content" class="transition-all duration-500 font-semibold tracking-wide flex items-center justify-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
-                    <span>⚡ RIHAN ECOM STORE MEGA LAUNCH: UP TO 50% OFF ELECTRONICS, STREETWEAR & FOOTWEAR!</span>
+            <div class="overflow-hidden flex-1 text-center px-2">
+                <div id="ticker-content" class="transition-all duration-500 font-semibold tracking-wide flex items-center justify-center gap-1.5 sm:gap-2 line-clamp-1">
+                    <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping flex-shrink-0"></span>
+                    <span class="truncate">⚡ RIHAN ECOM STORE MEGA LAUNCH: UP TO 50% OFF!</span>
                 </div>
             </div>
             <button id="ticker-next" class="p-1 hover:text-accent-cyan transition-colors" title="Next announcement">
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </button>
         </div>
     </div>
 
     <!-- 2. MAIN HEADER -->
     <header class="sticky top-0 left-0 w-full bg-white/95 backdrop-blur-md z-30 border-b border-slate-200 transition-shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
             
-            <!-- Mobile Menu Trigger -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-700 hover:text-brand-600 rounded-lg">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Mobile Menu Trigger -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-700 hover:text-brand-600 rounded-xl hover:bg-slate-100 transition-colors" aria-label="Open Navigation Menu">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
 
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-dark-900 text-white flex items-center justify-center font-display font-black text-xl shadow-md">
-                    R
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-dark-900 leading-none">RIHAN ECOM STORE</span>
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-brand-600">Electronics &bull; Apparel &bull; Footwear</span>
-                </div>
-            </a>
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-2">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-dark-900 text-white flex items-center justify-center font-display font-black text-lg sm:text-xl shadow-md flex-shrink-0">
+                        R
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-extrabold text-base sm:text-xl tracking-tight text-dark-900 leading-none">RIHAN ECOM</span>
+                        <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-brand-600 hidden xs:inline">Premium Store</span>
+                    </div>
+                </a>
+            </div>
 
             <!-- Desktop Nav Menu -->
             <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
@@ -106,12 +108,12 @@
             </nav>
 
             <!-- Utility Controls -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 sm:gap-3">
                 <!-- Predictive Search Button -->
-                <button id="open-search-btn" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium transition-all" title="Search catalog...">
+                <button id="open-search-btn" class="flex items-center gap-2 p-2 sm:px-3.5 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium transition-all" title="Search catalog...">
                     <i data-lucide="search" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Search gadgets, clothes, shoes...</span>
-                    <kbd class="hidden sm:inline text-[10px] bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-slate-500">Ctrl+K</kbd>
+                    <span class="hidden lg:inline">Search gadgets, kicks, clothes...</span>
+                    <kbd class="hidden xl:inline text-[10px] bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-slate-500">Ctrl+K</kbd>
                 </button>
 
                 <!-- Currency Badge (BDT) -->
@@ -120,53 +122,109 @@
                 </div>
 
                 <!-- Shopping Cart Drawer Trigger -->
-                <button id="open-cart-btn" class="relative p-2.5 rounded-xl bg-dark-900 text-white hover:bg-brand-600 transition-all flex items-center gap-2 shadow-sm">
-                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                    <span id="cart-badge-count" class="w-5 h-5 rounded-full bg-accent-orange text-white text-[11px] font-bold flex items-center justify-center">0</span>
+                <button id="open-cart-btn" class="relative p-2 sm:p-2.5 rounded-xl bg-dark-900 text-white hover:bg-brand-600 transition-all flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                    <span id="cart-badge-count" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-accent-orange text-white text-[10px] sm:text-[11px] font-bold flex items-center justify-center">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- 3. HERO PROMOTIONAL BANNER -->
-    <section class="relative bg-gradient-to-r from-dark-900 via-slate-900 to-dark-800 text-white overflow-hidden py-16 sm:py-24 px-6">
-        <div class="absolute inset-0 bg-[radial-gradient(#00F0FF_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
-            <div class="max-w-xl text-center md:text-left">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/40 text-brand-100 text-xs font-bold tracking-wider uppercase mb-5">
-                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
-                    Rihan Ecom Store &bull; Multi-Category Mega Drop 2026
+    <!-- MOBILE SLIDE-OUT NAVIGATION DRAWER -->
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobile-nav-drawer" class="fixed top-0 left-0 h-full w-[85%] max-w-xs bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold font-display text-sm">R</div>
+                <span class="font-display font-extrabold text-base text-dark-900">RIHAN ECOM</span>
+            </div>
+            <button id="close-mobile-nav-btn" class="p-1.5 rounded-lg text-slate-400 hover:text-dark-900 hover:bg-slate-100">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="p-5 space-y-6 flex-1 overflow-y-auto text-sm">
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Shop Categories</span>
+                <nav class="space-y-1 font-semibold text-slate-700">
+                    <button class="mobile-cat-link w-full text-left py-2.5 px-3 rounded-xl hover:bg-brand-50 hover:text-brand-600 flex items-center gap-3 transition-colors" data-cat="All">
+                        <i data-lucide="layout-grid" class="w-4 h-4 text-brand-600"></i> All Products
+                    </button>
+                    <button class="mobile-cat-link w-full text-left py-2.5 px-3 rounded-xl hover:bg-brand-50 hover:text-brand-600 flex items-center gap-3 transition-colors" data-cat="Electronics">
+                        <i data-lucide="cpu" class="w-4 h-4 text-accent-purple"></i> Electronics & Gadgets
+                    </button>
+                    <button class="mobile-cat-link w-full text-left py-2.5 px-3 rounded-xl hover:bg-brand-50 hover:text-brand-600 flex items-center gap-3 transition-colors" data-cat="Streetwear">
+                        <i data-lucide="shirt" class="w-4 h-4 text-accent-orange"></i> Streetwear & Apparel
+                    </button>
+                    <button class="mobile-cat-link w-full text-left py-2.5 px-3 rounded-xl hover:bg-brand-50 hover:text-brand-600 flex items-center gap-3 transition-colors" data-cat="Footwear">
+                        <i data-lucide="footprints" class="w-4 h-4 text-teal-600"></i> Footwear & Sneakers
+                    </button>
+                    <button class="mobile-cat-link w-full text-left py-2.5 px-3 rounded-xl hover:bg-brand-50 hover:text-brand-600 flex items-center gap-3 transition-colors" data-cat="Accessories">
+                        <i data-lucide="watch" class="w-4 h-4 text-blue-600"></i> Accessories & Gear
+                    </button>
+                </nav>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Customer Care</span>
+                <div class="space-y-2 text-xs text-slate-600">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-600"></i> +880 1886-888841
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-600"></i> 10:00 AM – 10:00 PM
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> 7-Day Free Replacement
+                    </div>
                 </div>
-                <h1 class="text-4xl sm:text-6xl font-black font-display tracking-tight leading-tight mb-5">
-                    Premium Gear. <br>
+            </div>
+        </div>
+
+        <div class="p-4 bg-slate-50 border-t border-slate-100 text-xs text-center text-slate-500 font-mono">
+            Rihan OmniStore &bull; Mobile v2.1
+        </div>
+    </aside>
+
+    <!-- 3. HERO PROMOTIONAL BANNER -->
+    <section class="relative bg-gradient-to-r from-dark-900 via-slate-900 to-dark-800 text-white overflow-hidden py-10 sm:py-20 px-4 sm:px-6">
+        <div class="absolute inset-0 bg-[radial-gradient(#00F0FF_1px,transparent_1px)] [background-size:20px_20px] opacity-10"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 relative z-10">
+            <div class="max-w-xl text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/40 text-brand-100 text-[10px] sm:text-xs font-bold tracking-wider uppercase mb-3 sm:mb-5">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                    Rihan Ecom Store &bull; 2026 Collection
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight leading-tight mb-3 sm:mb-5">
+                    Premium Gear. <br class="hidden sm:inline">
                     <span class="bg-gradient-to-r from-accent-cyan via-teal-200 to-white bg-clip-text text-transparent">Curated For Excellence.</span>
                 </h1>
-                <p class="text-slate-300 text-base sm:text-lg mb-8 font-normal leading-relaxed">
-                    From cutting-edge wireless audio and smart electronics to authentic sneaker silhouettes and cyber streetwear. Instant Cash on Delivery across Bangladesh.
+                <p class="text-slate-300 text-xs sm:text-base mb-6 font-normal leading-relaxed">
+                    Cutting-edge wireless audio, smart tech, authentic kicks, and cyber streetwear. Instant Cash on Delivery across Bangladesh.
                 </p>
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                    <a href="#catalog" class="px-7 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm tracking-wide shadow-lg shadow-brand-500/30 transition-all flex items-center gap-2">
-                        Browse Full Store <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-4">
+                    <a href="#catalog" class="px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-brand-500/30 transition-all flex items-center gap-2">
+                        Browse Full Store <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     </a>
-                    <a href="#catalog" data-filter-cat="Electronics" class="px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all flex items-center gap-2">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-accent-cyan"></i> Trending Gadgets
+                    <a href="#catalog" data-filter-cat="Electronics" class="px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent-cyan"></i> Trending Gadgets
                     </a>
                 </div>
             </div>
 
             <!-- Hero Floating Visual Showcase -->
-            <div class="relative w-full max-w-md flex items-center justify-center">
+            <div class="relative w-full max-w-sm sm:max-w-md flex items-center justify-center">
                 <div class="absolute -inset-4 bg-gradient-to-tr from-brand-500/30 to-accent-cyan/20 rounded-full blur-3xl"></div>
-                <div class="relative rounded-3xl bg-white/5 border border-white/10 p-6 backdrop-blur-xl shadow-2xl text-center w-full">
-                    <img id="hero-showcase-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Wireless ANC Studio Headphones" class="w-full h-64 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500">
-                    <div class="mt-4 flex items-center justify-between text-left">
+                <div class="relative rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 p-4 sm:p-6 backdrop-blur-xl shadow-2xl text-center w-full">
+                    <img id="hero-showcase-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Wireless ANC Studio Headphones" class="w-full h-44 sm:h-64 object-cover rounded-xl sm:rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500">
+                    <div class="mt-3 sm:mt-4 flex items-center justify-between text-left">
                         <div>
-                            <span class="text-xs font-mono text-accent-cyan uppercase">Spotlight Electronics</span>
-                            <h4 class="font-bold text-white text-base">AcousticPro ANC Wireless Headphones</h4>
+                            <span class="text-[10px] sm:text-xs font-mono text-accent-cyan uppercase">Spotlight Electronics</span>
+                            <h4 class="font-bold text-white text-xs sm:text-base">AcousticPro ANC Headphones</h4>
                         </div>
                         <div class="text-right">
-                            <span class="text-xs text-slate-400 line-through">Tk 4,999</span>
-                            <div class="font-bold text-brand-100 text-lg">Tk 2,899</div>
+                            <span class="text-[10px] sm:text-xs text-slate-400 line-through">Tk 4,999</span>
+                            <div class="font-bold text-brand-100 text-sm sm:text-lg">Tk 2,899</div>
                         </div>
                     </div>
                 </div>
@@ -174,143 +232,161 @@
         </div>
     </section>
 
-    <!-- 4. QUICK CATEGORY STRIP -->
-    <section class="py-10 px-4 sm:px-6 bg-white border-b border-slate-200">
+    <!-- 4. QUICK CATEGORY STRIP (Horizontal swipe on mobile, grid on desktop) -->
+    <section class="py-6 sm:py-10 px-3 sm:px-6 bg-white border-b border-slate-200">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <button data-cat="Electronics" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="cpu" class="w-6 h-6"></i>
+            <div class="flex sm:grid sm:grid-cols-4 gap-2.5 sm:gap-4 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
+                <button data-cat="Electronics" class="cat-pill-btn flex-shrink-0 w-44 sm:w-auto p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-2.5 sm:gap-3.5 group">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
                     <div>
-                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Electronics</div>
-                        <div class="text-xs text-slate-500">Audio, Watches & Gear</div>
+                        <div class="font-bold text-dark-900 text-xs sm:text-sm group-hover:text-brand-600">Electronics</div>
+                        <div class="text-[10px] sm:text-xs text-slate-500 line-clamp-1">Audio & Tech</div>
                     </div>
                 </button>
 
-                <button data-cat="Streetwear" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-800 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="shirt" class="w-6 h-6"></i>
+                <button data-cat="Streetwear" class="cat-pill-btn flex-shrink-0 w-44 sm:w-auto p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-2.5 sm:gap-3.5 group">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-orange-100 text-orange-800 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shirt" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
                     <div>
-                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Streetwear</div>
-                        <div class="text-xs text-slate-500">Hoodies & Jackets</div>
+                        <div class="font-bold text-dark-900 text-xs sm:text-sm group-hover:text-brand-600">Streetwear</div>
+                        <div class="text-[10px] sm:text-xs text-slate-500 line-clamp-1">Hoodies & Tees</div>
                     </div>
                 </button>
 
-                <button data-cat="Footwear" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
-                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="footprints" class="w-6 h-6"></i>
+                <button data-cat="Footwear" class="cat-pill-btn flex-shrink-0 w-44 sm:w-auto p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-2.5 sm:gap-3.5 group">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <i data-lucide="footprints" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
                     <div>
-                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Footwear</div>
-                        <div class="text-xs text-slate-500">Sneakers & Runners</div>
+                        <div class="font-bold text-dark-900 text-xs sm:text-sm group-hover:text-brand-600">Footwear</div>
+                        <div class="text-[10px] sm:text-xs text-slate-500 line-clamp-1">Sneakers & Kicks</div>
                     </div>
                 </button>
 
-                <button data-cat="Accessories" class="cat-pill-btn p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-3.5 group">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="glasses" class="w-6 h-6"></i>
+                <button data-cat="Accessories" class="cat-pill-btn flex-shrink-0 w-44 sm:w-auto p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-left flex items-center gap-2.5 sm:gap-3.5 group">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <i data-lucide="glasses" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
                     <div>
-                        <div class="font-bold text-dark-900 text-sm group-hover:text-brand-600">Accessories</div>
-                        <div class="text-xs text-slate-500">Shades, Bags & Tech</div>
+                        <div class="font-bold text-dark-900 text-xs sm:text-sm group-hover:text-brand-600">Accessories</div>
+                        <div class="text-[10px] sm:text-xs text-slate-500 line-clamp-1">Shades & Bags</div>
                     </div>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- 5. MAIN CATALOG WITH DYNAMIC FILTERS & SORTING -->
-    <section id="catalog" class="py-14 px-4 sm:px-6 flex-1 max-w-7xl mx-auto w-full">
-        <div class="flex flex-col lg:flex-row gap-8">
+    <!-- 5. MAIN CATALOG WITH RESPONSIVE FILTER DRAWER & 2-COL MOBILE GRID -->
+    <section id="catalog" class="py-8 sm:py-14 px-3 sm:px-6 flex-1 max-w-7xl mx-auto w-full">
+        
+        <!-- Mobile Filter Drawer Overlay -->
+        <div id="filter-drawer-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+
+        <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start">
             
-            <!-- Left Filter Sidebar -->
-            <aside class="w-full lg:w-72 flex-shrink-0">
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 sticky top-28 shadow-sm space-y-6">
-                    <div class="flex items-center justify-between pb-4 border-b border-slate-100">
-                        <h3 class="font-display font-bold text-base text-dark-900 flex items-center gap-2">
-                            <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-600"></i> Filters
-                        </h3>
-                        <button id="reset-filters-btn" class="text-xs font-semibold text-brand-600 hover:underline">Reset All</button>
+            <!-- Filter Sidebar (Responsive: Off-canvas drawer on mobile, static card on desktop) -->
+            <aside id="filter-sidebar" class="fixed inset-y-0 left-0 z-50 w-80 max-w-[85%] bg-white p-6 overflow-y-auto transform -translate-x-full lg:translate-x-0 lg:static lg:w-72 lg:z-auto lg:p-6 lg:rounded-2xl lg:border lg:border-slate-200 lg:shadow-sm transition-transform duration-300 space-y-6 flex-shrink-0">
+                <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                    <h3 class="font-display font-bold text-base text-dark-900 flex items-center gap-2">
+                        <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-600"></i> Filter Store
+                    </h3>
+                    <div class="flex items-center gap-2">
+                        <button id="reset-filters-btn" class="text-xs font-semibold text-brand-600 hover:underline">Reset</button>
+                        <button id="close-filter-drawer-btn" class="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-dark-900 hover:bg-slate-100">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
                     </div>
+                </div>
 
-                    <!-- Category Filter -->
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Categories</label>
-                        <div class="space-y-2 text-sm">
-                            <label class="flex items-center gap-2.5 cursor-pointer">
-                                <input type="radio" name="cat-filter" value="All" checked class="text-brand-600 focus:ring-brand-500">
-                                <span class="font-medium text-slate-800">All Products</span>
-                            </label>
-                            <label class="flex items-center gap-2.5 cursor-pointer">
-                                <input type="radio" name="cat-filter" value="Electronics" class="text-brand-600 focus:ring-brand-500">
-                                <span>Electronics & Gadgets</span>
-                            </label>
-                            <label class="flex items-center gap-2.5 cursor-pointer">
-                                <input type="radio" name="cat-filter" value="Streetwear" class="text-brand-600 focus:ring-brand-500">
-                                <span>Streetwear & Apparel</span>
-                            </label>
-                            <label class="flex items-center gap-2.5 cursor-pointer">
-                                <input type="radio" name="cat-filter" value="Footwear" class="text-brand-600 focus:ring-brand-500">
-                                <span>Footwear & Sneakers</span>
-                            </label>
-                            <label class="flex items-center gap-2.5 cursor-pointer">
-                                <input type="radio" name="cat-filter" value="Accessories" class="text-brand-600 focus:ring-brand-500">
-                                <span>Accessories & Gear</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Max Price Slider -->
-                    <div>
-                        <div class="flex justify-between text-xs font-bold mb-2">
-                            <span class="text-slate-500 uppercase tracking-wider">Max Price</span>
-                            <span id="price-slider-label" class="text-brand-600 font-mono">Tk 6,000</span>
-                        </div>
-                        <input type="range" id="price-slider" min="500" max="6000" step="100" value="6000" class="w-full accent-brand-600 cursor-pointer">
-                    </div>
-
-                    <!-- Availability Toggle -->
-                    <div class="pt-2 border-t border-slate-100">
-                        <label class="flex items-center justify-between text-sm cursor-pointer">
-                            <span class="font-medium text-slate-700">In Stock Only</span>
-                            <input type="checkbox" id="stock-only-toggle" class="rounded text-brand-600 focus:ring-brand-500 w-4 h-4">
+                <!-- Category Filter -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Categories</label>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="radio" name="cat-filter" value="All" checked class="text-brand-600 focus:ring-brand-500">
+                            <span class="font-medium text-slate-800">All Products</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="radio" name="cat-filter" value="Electronics" class="text-brand-600 focus:ring-brand-500">
+                            <span>Electronics & Gadgets</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="radio" name="cat-filter" value="Streetwear" class="text-brand-600 focus:ring-brand-500">
+                            <span>Streetwear & Apparel</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="radio" name="cat-filter" value="Footwear" class="text-brand-600 focus:ring-brand-500">
+                            <span>Footwear & Sneakers</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="radio" name="cat-filter" value="Accessories" class="text-brand-600 focus:ring-brand-500">
+                            <span>Accessories & Gear</span>
                         </label>
                     </div>
-
                 </div>
+
+                <!-- Max Price Slider -->
+                <div>
+                    <div class="flex justify-between text-xs font-bold mb-2">
+                        <span class="text-slate-500 uppercase tracking-wider">Max Price</span>
+                        <span id="price-slider-label" class="text-brand-600 font-mono">Tk 6,000</span>
+                    </div>
+                    <input type="range" id="price-slider" min="500" max="6000" step="100" value="6000" class="w-full accent-brand-600 cursor-pointer">
+                </div>
+
+                <!-- Availability Toggle -->
+                <div class="pt-2 border-t border-slate-100">
+                    <label class="flex items-center justify-between text-sm cursor-pointer">
+                        <span class="font-medium text-slate-700">In Stock Only</span>
+                        <input type="checkbox" id="stock-only-toggle" class="rounded text-brand-600 focus:ring-brand-500 w-4 h-4">
+                    </label>
+                </div>
+
+                <!-- Apply Button on Mobile -->
+                <button id="apply-filter-mobile-btn" class="w-full lg:hidden py-3 rounded-xl bg-dark-900 text-white font-bold text-xs uppercase tracking-wider">
+                    Show Results
+                </button>
             </aside>
 
-            <!-- Product Grid & Toolbar -->
-            <div class="flex-1">
+            <!-- Product Grid & Responsive Toolbar -->
+            <div class="flex-1 w-full">
                 <!-- Toolbar -->
-                <div class="bg-white rounded-2xl border border-slate-200 p-4 mb-6 flex flex-wrap items-center justify-between gap-4 shadow-sm">
-                    <div class="text-sm font-semibold text-slate-600">
-                        Showing <span id="product-count-display" class="font-bold text-dark-900">0</span> items in <span id="current-category-label" class="text-brand-600">All Products</span>
+                <div class="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-3 sm:p-4 mb-4 sm:mb-6 flex items-center justify-between gap-2 shadow-sm">
+                    <div class="flex items-center gap-2">
+                        <!-- Mobile Filter Trigger Button -->
+                        <button id="open-filter-btn" class="lg:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+                            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-brand-600"></i>
+                            <span>Filters</span>
+                        </button>
+                        <div class="text-xs sm:text-sm font-semibold text-slate-600 truncate">
+                            <span id="product-count-display" class="font-bold text-dark-900">0</span> items
+                        </div>
                     </div>
 
-                    <div class="flex items-center gap-3">
-                        <label class="text-xs font-medium text-slate-500 hidden sm:inline">Sort by:</label>
-                        <select id="sort-select" class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:outline-none focus:border-brand-500">
-                            <option value="featured">Featured Picks</option>
-                            <option value="price-asc">Price: Low to High</option>
-                            <option value="price-desc">Price: High to Low</option>
-                            <option value="discount">Biggest Discount (%)</option>
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs font-medium text-slate-500 hidden sm:inline">Sort:</label>
+                        <select id="sort-select" class="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold text-slate-700 focus:outline-none focus:border-brand-500">
+                            <option value="featured">Featured</option>
+                            <option value="price-asc">Price &uarr;</option>
+                            <option value="price-desc">Price &darr;</option>
+                            <option value="discount">Discount %</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Products Grid -->
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Products Grid: 2 columns on mobile, 2 sm, 3 lg -->
+                <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                     <!-- Dynamic Product Cards Injected by JavaScript -->
                 </div>
 
                 <!-- Empty State -->
-                <div id="empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-200 p-8">
-                    <i data-lucide="package-search" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
-                    <h3 class="font-display font-bold text-lg text-dark-900 mb-1">No Items Match Your Filters</h3>
-                    <p class="text-slate-500 text-sm mb-4">Try clearing filters or expanding your price range.</p>
+                <div id="empty-state" class="hidden text-center py-12 sm:py-16 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-6 sm:p-8">
+                    <i data-lucide="package-search" class="w-10 h-10 sm:w-12 sm:h-12 text-slate-400 mx-auto mb-3"></i>
+                    <h3 class="font-display font-bold text-base sm:text-lg text-dark-900 mb-1">No Items Match Your Filters</h3>
+                    <p class="text-slate-500 text-xs sm:text-sm mb-4">Try clearing filters or expanding price range.</p>
                     <button id="empty-reset-btn" class="px-5 py-2 rounded-xl bg-brand-500 text-white font-semibold text-xs">Reset All Filters</button>
                 </div>
             </div>
@@ -320,12 +396,12 @@
 
     <!-- 6. SLIDE-OUT MINI-CART DRAWER -->
     <div id="cart-drawer-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
         <!-- Drawer Header -->
-        <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+        <div class="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-100 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-600"></i>
-                <h3 class="font-display font-bold text-lg text-dark-900">Your Cart</h3>
+                <h3 class="font-display font-bold text-base sm:text-lg text-dark-900">Your Cart</h3>
                 <span id="drawer-item-count" class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">0</span>
             </div>
             <button id="close-cart-btn" class="p-2 rounded-lg text-slate-400 hover:text-dark-900 hover:bg-slate-100 transition-colors">
@@ -334,8 +410,8 @@
         </div>
 
         <!-- Free Delivery Progress Bar -->
-        <div class="bg-brand-50 px-6 py-3 border-b border-brand-100">
-            <div class="flex justify-between text-xs font-semibold text-brand-900 mb-1.5">
+        <div class="bg-brand-50 px-4 sm:px-6 py-2.5 sm:py-3 border-b border-brand-100">
+            <div class="flex justify-between text-[11px] sm:text-xs font-semibold text-brand-900 mb-1.5">
                 <span id="free-shipping-text">Add Tk 2,500 for FREE Delivery!</span>
                 <span class="text-brand-600 font-bold">Free at Tk 3,000</span>
             </div>
@@ -345,16 +421,16 @@
         </div>
 
         <!-- Cart Items List -->
-        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4">
             <!-- Dynamic Cart Items Rendered Here -->
         </div>
 
         <!-- Cart Footer & In-Drawer Voucher -->
-        <div class="border-t border-slate-100 p-6 bg-slate-50 space-y-4">
+        <div class="border-t border-slate-100 p-4 sm:p-6 bg-slate-50 space-y-3 sm:space-y-4">
             <!-- In-Drawer Discount Input -->
             <div class="flex gap-2">
-                <input type="text" id="discount-input" placeholder="Voucher Code (Try 'RIHAN10')" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs uppercase font-mono tracking-wider focus:outline-none focus:border-brand-500">
-                <button id="apply-discount-btn" class="px-4 py-2.5 rounded-xl bg-dark-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors">Apply</button>
+                <input type="text" id="discount-input" placeholder="Voucher (Try 'RIHAN10')" class="flex-1 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-slate-200 text-xs uppercase font-mono tracking-wider focus:outline-none focus:border-brand-500">
+                <button id="apply-discount-btn" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-dark-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors">Apply</button>
             </div>
             <div id="discount-badge" class="hidden text-xs font-semibold text-emerald-600 flex items-center justify-between">
                 <span>&check; 10% Discount Applied!</span>
@@ -362,7 +438,7 @@
             </div>
 
             <!-- Price Breakdown -->
-            <div class="space-y-1.5 text-xs text-slate-600">
+            <div class="space-y-1 text-xs text-slate-600">
                 <div class="flex justify-between">
                     <span>Subtotal:</span>
                     <span id="cart-subtotal" class="font-mono font-bold text-slate-800">Tk 0</span>
@@ -375,108 +451,108 @@
                     <span>Estimated Shipping:</span>
                     <span id="cart-shipping" class="font-mono font-semibold text-slate-800">Tk 70 (Dhaka)</span>
                 </div>
-                <div class="flex justify-between text-base font-bold text-dark-900 pt-2 border-t border-slate-200">
+                <div class="flex justify-between text-sm sm:text-base font-bold text-dark-900 pt-1.5 border-t border-slate-200">
                     <span>Total Amount:</span>
                     <span id="cart-total" class="font-mono text-brand-600 font-extrabold">Tk 0</span>
                 </div>
             </div>
 
             <!-- Checkout Button -->
-            <button id="proceed-cod-btn" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
+            <button id="proceed-cod-btn" class="w-full py-3.5 sm:py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
                 <i data-lucide="truck" class="w-4 h-4"></i> Cash on Delivery Checkout &rarr;
             </button>
         </div>
     </aside>
 
     <!-- 7. PERSISTENT STICKY BUY BAR (Scroll Activated) -->
-    <div id="sticky-buy-bar" class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 sm:p-4 z-40 transform translate-y-full transition-transform duration-300 shadow-2xl">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <img id="sticky-thumb" src="" alt="Thumbnail" class="w-12 h-12 rounded-xl object-cover border border-slate-200">
-                <div>
-                    <h4 id="sticky-title" class="font-bold text-dark-900 text-xs sm:text-sm line-clamp-1">Product Title</h4>
-                    <div class="flex items-center gap-2 text-xs">
+    <div id="sticky-buy-bar" class="fixed bottom-14 md:bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200 p-2.5 sm:p-4 z-20 md:z-40 transform translate-y-full transition-transform duration-300 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 sm:gap-3 overflow-hidden">
+                <img id="sticky-thumb" src="" alt="Thumbnail" class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl object-cover border border-slate-200 flex-shrink-0">
+                <div class="truncate">
+                    <h4 id="sticky-title" class="font-bold text-dark-900 text-xs sm:text-sm truncate">Product Title</h4>
+                    <div class="flex items-center gap-1.5 text-[11px] sm:text-xs">
                         <span id="sticky-price" class="font-bold text-brand-600 font-mono">Tk 1,799</span>
-                        <span class="text-slate-400">&bull; Option:</span>
-                        <span id="sticky-selected-size" class="font-bold text-dark-900 font-mono">Standard</span>
+                        <span class="text-slate-400 hidden xs:inline">&bull;</span>
+                        <span id="sticky-selected-size" class="text-slate-500 font-mono hidden xs:inline truncate">Standard</span>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center gap-3">
-                <button id="sticky-add-btn" class="px-5 py-2.5 rounded-xl bg-dark-900 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-sm">
-                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Add to Cart
+            <div class="flex items-center gap-2 flex-shrink-0">
+                <button id="sticky-add-btn" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-dark-900 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> <span>Add</span>
                 </button>
             </div>
         </div>
     </div>
 
     <!-- 8. PRODUCT DETAIL MODAL (PDP View) -->
-    <div id="pdp-modal-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
-        <div id="pdp-modal" class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300 relative">
-            <button id="close-pdp-btn" class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 z-10 transition-colors">
-                <i data-lucide="x" class="w-5 h-5"></i>
+    <div id="pdp-modal-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div id="pdp-modal" class="bg-white rounded-t-3xl sm:rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform translate-y-10 sm:translate-y-0 sm:scale-95 transition-transform duration-300 relative">
+            <button id="close-pdp-btn" class="absolute top-3.5 right-3.5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 z-10 transition-colors">
+                <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </button>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 p-5 sm:p-8">
                 <!-- Gallery -->
                 <div>
                     <div class="rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 relative mb-3 group">
-                        <img id="pdp-main-img" src="" alt="Product" class="w-full h-72 object-cover">
-                        <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-rose-500 text-white text-[11px] font-bold uppercase tracking-wider" id="pdp-badge">
+                        <img id="pdp-main-img" src="" alt="Product" class="w-full h-56 sm:h-72 object-cover">
+                        <div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-bold uppercase tracking-wider" id="pdp-badge">
                             50% OFF
                         </div>
                     </div>
-                    <div class="flex items-center gap-2 text-xs text-slate-500 justify-center">
-                        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Verified Rihan Quality &bull; 7-Day Replacement
+                    <div class="flex items-center gap-1.5 text-[11px] text-slate-500 justify-center">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Verified Rihan Quality &bull; 7-Day Replacement
                     </div>
                 </div>
 
                 <!-- Product Purchase Form -->
                 <div class="flex flex-col justify-between">
                     <div>
-                        <span id="pdp-category" class="text-xs font-mono font-bold text-brand-600 uppercase tracking-widest">ELECTRONICS</span>
-                        <h2 id="pdp-title" class="text-2xl font-display font-extrabold text-dark-900 mt-1 mb-2">Product Name</h2>
+                        <span id="pdp-category" class="text-[10px] font-mono font-bold text-brand-600 uppercase tracking-widest">ELECTRONICS</span>
+                        <h2 id="pdp-title" class="text-xl sm:text-2xl font-display font-extrabold text-dark-900 mt-1 mb-2">Product Name</h2>
                         
                         <!-- Price Breakdown -->
-                        <div class="flex items-baseline gap-3 mb-4">
-                            <span id="pdp-sale-price" class="text-2xl font-black font-mono text-dark-900">Tk 1,799</span>
-                            <span id="pdp-regular-price" class="text-sm font-mono text-slate-400 line-through">Tk 3,499</span>
-                            <span id="pdp-savings" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Save Tk 1,700</span>
+                        <div class="flex items-baseline gap-2.5 mb-3">
+                            <span id="pdp-sale-price" class="text-xl sm:text-2xl font-black font-mono text-dark-900">Tk 1,799</span>
+                            <span id="pdp-regular-price" class="text-xs sm:text-sm font-mono text-slate-400 line-through">Tk 3,499</span>
+                            <span id="pdp-savings" class="text-[10px] sm:text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Save Tk 1,700</span>
                         </div>
 
                         <!-- Real-time Low Stock Warning -->
-                        <div class="p-2.5 rounded-xl bg-orange-50 border border-orange-200 text-orange-800 text-xs font-semibold flex items-center gap-2 mb-4">
+                        <div class="p-2.5 rounded-xl bg-orange-50 border border-orange-200 text-orange-800 text-[11px] sm:text-xs font-semibold flex items-center gap-2 mb-3">
                             <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
                             <span id="pdp-stock-indicator">🔥 Low Stock: Only 3 units remaining!</span>
                         </div>
 
                         <!-- Variant Selector (Sizes, Colors, or Specs) -->
-                        <div class="mb-5">
+                        <div class="mb-4">
                             <div class="flex justify-between items-center text-xs font-bold mb-2">
-                                <span id="pdp-variant-label" class="text-slate-700 uppercase tracking-wider">Select Variant / Size</span>
+                                <span id="pdp-variant-label" class="text-slate-700 uppercase tracking-wider">Select Option</span>
                             </div>
                             <div id="pdp-size-options" class="flex flex-wrap gap-2">
                                 <!-- Dynamic Variant Buttons -->
                             </div>
-                            <div class="mt-2 text-[11px] font-mono text-slate-400">
+                            <div class="mt-2 text-[10px] font-mono text-slate-400">
                                 SKU: <span id="pdp-sku-display" class="font-bold text-slate-700">RE-PROD-01</span>
                             </div>
                         </div>
 
                         <!-- Description -->
-                        <p id="pdp-desc" class="text-xs text-slate-600 leading-relaxed mb-6">
+                        <p id="pdp-desc" class="text-xs text-slate-600 leading-relaxed mb-4">
                             Engineered with premium materials for maximum durability and everyday performance.
                         </p>
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="space-y-3">
-                        <button id="pdp-add-cart-btn" class="w-full py-3.5 rounded-xl bg-dark-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md">
+                    <div class="space-y-2 pt-2 border-t border-slate-100">
+                        <button id="pdp-add-cart-btn" class="w-full py-3 rounded-xl bg-dark-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md">
                             <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add To Shopping Cart
                         </button>
-                        <button id="pdp-buy-now-btn" class="w-full py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
-                            <i data-lucide="zap" class="w-4 h-4"></i> Fast Cash on Delivery Checkout
+                        <button id="pdp-buy-now-btn" class="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
+                            <i data-lucide="zap" class="w-4 h-4"></i> Fast Cash on Delivery
                         </button>
                     </div>
                 </div>
@@ -485,58 +561,58 @@
     </div>
 
     <!-- 9. PREDICTIVE SEARCH MODAL -->
-    <div id="search-modal-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-start justify-center pt-20 px-4">
-        <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl p-6 relative">
-            <div class="flex items-center gap-3 pb-4 border-b border-slate-200">
-                <i data-lucide="search" class="w-5 h-5 text-brand-600"></i>
-                <input type="text" id="predictive-search-input" placeholder="Type gadget, clothing, shoes, or accessory..." class="flex-1 text-base text-dark-900 focus:outline-none placeholder-slate-400 font-medium">
+    <div id="search-modal-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-start justify-center pt-10 sm:pt-20 px-3 sm:px-4">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full shadow-2xl p-4 sm:p-6 relative">
+            <div class="flex items-center gap-2 sm:gap-3 pb-3 sm:pb-4 border-b border-slate-200">
+                <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5 text-brand-600"></i>
+                <input type="text" id="predictive-search-input" placeholder="Search gadgets, kicks, clothes..." class="flex-1 text-sm sm:text-base text-dark-900 focus:outline-none placeholder-slate-400 font-medium">
                 <button id="close-search-btn" class="p-1.5 rounded-lg text-slate-400 hover:text-dark-900 hover:bg-slate-100">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+                    <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </button>
             </div>
             <!-- Live Results -->
-            <div id="search-results-list" class="mt-4 max-h-80 overflow-y-auto space-y-2">
+            <div id="search-results-list" class="mt-3 sm:mt-4 max-h-72 overflow-y-auto space-y-2">
                 <div class="text-xs text-slate-400 py-6 text-center">Start typing to search Rihan Ecom Store instantly...</div>
             </div>
         </div>
     </div>
 
     <!-- 10. 1-PAGE FAST COD CHECKOUT MODAL -->
-    <div id="cod-checkout-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button id="close-cod-btn" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600">
-                <i data-lucide="x" class="w-5 h-5"></i>
+    <div id="cod-checkout-overlay" class="fixed inset-0 bg-dark-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="close-cod-btn" class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600">
+                <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </button>
 
-            <div class="flex items-center gap-2 mb-1 text-brand-600 font-bold text-xs uppercase tracking-widest">
-                <i data-lucide="shield-check" class="w-4 h-4"></i> Secure Cash On Delivery
+            <div class="flex items-center gap-2 mb-1 text-brand-600 font-bold text-[10px] sm:text-xs uppercase tracking-widest">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Secure Cash On Delivery
             </div>
-            <h3 class="text-xl font-display font-extrabold text-dark-900 mb-1">Expedited Checkout</h3>
-            <p class="text-xs text-slate-500 mb-5">Pay cash to delivery courier upon package arrival.</p>
+            <h3 class="text-lg sm:text-xl font-display font-extrabold text-dark-900 mb-1">Expedited Checkout</h3>
+            <p class="text-xs text-slate-500 mb-4">Pay cash to delivery courier upon package arrival.</p>
 
-            <form id="cod-form" class="space-y-4">
+            <form id="cod-form" class="space-y-3.5">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
-                    <input type="text" required placeholder="e.g. Md Rihan" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    <input type="text" required placeholder="e.g. Md Rihan" class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile Number (For Courier SMS)</label>
-                    <input type="tel" required placeholder="018XXXXXXXX" pattern="[0-9]{11}" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-mono focus:outline-none focus:border-brand-500">
+                    <input type="tel" required placeholder="018XXXXXXXX" pattern="[0-9]{11}" class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-slate-200 text-sm font-mono focus:outline-none focus:border-brand-500">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Delivery Destination</label>
-                    <select id="checkout-city" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    <select id="checkout-city" class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
                         <option value="70">Inside Dhaka (Tk 70 - 24-48 Hours)</option>
                         <option value="130">Outside Dhaka (Tk 130 - 48-72 Hours)</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Street Address & Area</label>
-                    <textarea rows="2" required placeholder="House, Road, Sector/Thana, City" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                    <textarea rows="2" required placeholder="House, Road, Sector/Thana, City" class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
                 </div>
 
                 <!-- Order Total Summary -->
-                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
                     <div class="flex justify-between text-slate-600">
                         <span>Items:</span>
                         <span id="cod-items-sum" class="font-bold text-slate-800">Tk 0</span>
@@ -547,23 +623,23 @@
                     </div>
                     <div class="flex justify-between text-sm font-bold text-dark-900 pt-1.5 border-t border-slate-200">
                         <span>Payable Upon Delivery:</span>
-                        <span id="cod-payable-sum" class="font-mono text-brand-600 font-extrabold text-base">Tk 0</span>
+                        <span id="cod-payable-sum" class="font-mono text-brand-600 font-extrabold text-sm sm:text-base">Tk 0</span>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
+                <button type="submit" class="w-full py-3.5 sm:py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
                     <i data-lucide="check-circle" class="w-4 h-4"></i> Confirm Order Now
                 </button>
             </form>
 
             <!-- Order Success Confirmation -->
             <div id="cod-success-box" class="hidden text-center py-6">
-                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="check" class="w-8 h-8"></i>
+                <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="check" class="w-7 h-7"></i>
                 </div>
-                <h4 class="text-xl font-display font-extrabold text-dark-900 mb-1">Order Confirmed!</h4>
+                <h4 class="text-lg sm:text-xl font-display font-extrabold text-dark-900 mb-1">Order Confirmed!</h4>
                 <p class="text-xs text-slate-500 mb-4">Tracking Code: <strong id="generated-tracking-code" class="font-mono text-brand-600">RE-2026-9812</strong></p>
-                <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-600 mb-6">
+                <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-600 mb-5">
                     Courier dispatch SMS has been transmitted. Prepare exact cash upon delivery.
                 </div>
                 <button id="finish-order-btn" class="px-6 py-2.5 rounded-xl bg-dark-900 text-white font-semibold text-xs">Back to Store</button>
@@ -571,27 +647,48 @@
         </div>
     </div>
 
-    <!-- 11. FOOTER -->
-    <footer class="bg-dark-900 text-slate-400 py-16 px-6 border-t border-white/10 mt-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-xs">
+    <!-- 11. FIXED BOTTOM APP BAR FOR MOBILE DEVICES (App-like PWA experience) -->
+    <nav id="mobile-bottom-bar" class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 flex items-center justify-around py-2 px-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+        <a href="#catalog" class="flex flex-col items-center gap-0.5 text-slate-600 hover:text-brand-600 py-1 px-3">
+            <i data-lucide="store" class="w-4 h-4"></i>
+            <span class="text-[10px] font-semibold">Store</span>
+        </a>
+        <button id="bottom-bar-search-btn" class="flex flex-col items-center gap-0.5 text-slate-600 hover:text-brand-600 py-1 px-3">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span class="text-[10px] font-semibold">Search</span>
+        </button>
+        <button id="bottom-bar-filter-btn" class="flex flex-col items-center gap-0.5 text-slate-600 hover:text-brand-600 py-1 px-3">
+            <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+            <span class="text-[10px] font-semibold">Filters</span>
+        </button>
+        <button id="bottom-bar-cart-btn" class="relative flex flex-col items-center gap-0.5 text-slate-600 hover:text-brand-600 py-1 px-3">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span id="bottom-cart-badge" class="absolute top-0 right-2 w-3.5 h-3.5 bg-accent-orange text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+    </nav>
+
+    <!-- 12. FOOTER -->
+    <footer class="bg-dark-900 text-slate-400 py-12 sm:py-16 px-4 sm:px-6 border-t border-white/10 mt-16 sm:mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 text-xs">
             <div>
-                <div class="flex items-center gap-2 text-white font-display font-bold text-lg mb-3">
-                    <div class="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center">R</div>
+                <div class="flex items-center gap-2 text-white font-display font-bold text-base sm:text-lg mb-3">
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center font-bold">R</div>
                     RIHAN ECOM STORE
                 </div>
-                <p class="text-slate-400 leading-relaxed mb-4">
+                <p class="text-slate-400 leading-relaxed mb-4 text-[11px] sm:text-xs">
                     Your premier multi-category digital marketplace for high-end electronics, modern streetwear, authentic footwear, and tech accessories.
                 </p>
-                <div class="flex items-center gap-3 text-white">
-                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="facebook" class="w-4 h-4"></i></span>
-                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="instagram" class="w-4 h-4"></i></span>
-                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="youtube" class="w-4 h-4"></i></span>
+                <div class="flex items-center gap-2.5 text-white">
+                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="facebook" class="w-3.5 h-3.5"></i></span>
+                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="instagram" class="w-3.5 h-3.5"></i></span>
+                    <span class="p-2 rounded-lg bg-white/5 border border-white/10"><i data-lucide="youtube" class="w-3.5 h-3.5"></i></span>
                 </div>
             </div>
 
             <div>
-                <h4 class="font-bold text-white uppercase tracking-wider mb-4">Categories</h4>
-                <ul class="space-y-2">
+                <h4 class="font-bold text-white uppercase tracking-wider mb-3">Categories</h4>
+                <ul class="space-y-1.5 text-slate-400">
                     <li><a href="#catalog" class="hover:text-white transition-colors">Smart Electronics & Gadgets</a></li>
                     <li><a href="#catalog" class="hover:text-white transition-colors">Cyber Streetwear & Hoodies</a></li>
                     <li><a href="#catalog" class="hover:text-white transition-colors">Sneakers & Performance Shoes</a></li>
@@ -600,27 +697,27 @@
             </div>
 
             <div>
-                <h4 class="font-bold text-white uppercase tracking-wider mb-4">Customer Care</h4>
-                <ul class="space-y-2">
-                    <li>Customer Support: <strong class="text-white">+880 1886-888841</strong></li>
-                    <li>Live Assistance: 10:00 AM – 10:00 PM</li>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-3">Customer Care</h4>
+                <ul class="space-y-1.5 text-slate-400">
+                    <li>Support: <strong class="text-white">+880 1886-888841</strong></li>
+                    <li>Hours: 10:00 AM – 10:00 PM</li>
                     <li>Email: support@rihanecom.store</li>
-                    <li>7-Day Replacement Guarantee</li>
+                    <li>7-Day Free Replacement Guarantee</li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold text-white uppercase tracking-wider mb-4">Store Guarantee</h4>
-                <p class="text-slate-400 leading-relaxed mb-3">
+                <h4 class="font-bold text-white uppercase tracking-wider mb-3">Store Guarantee</h4>
+                <p class="text-slate-400 leading-relaxed mb-3 text-[11px] sm:text-xs">
                     Every product in Rihan Ecom Store undergoes strict quality assurance before packaging and courier dispatch.
                 </p>
-                <div class="text-[11px] text-brand-100 bg-brand-900/40 border border-brand-500/30 p-2.5 rounded-xl font-mono">
-                    ⚡ Powered by Rihan OmniStore Engine v2.0
+                <div class="text-[10px] sm:text-[11px] text-brand-100 bg-brand-900/40 border border-brand-500/30 p-2.5 rounded-xl font-mono">
+                    ⚡ Powered by Rihan OmniStore Engine
                 </div>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto pt-10 mt-10 border-t border-white/5 text-center text-slate-500 text-[11px]">
+        <div class="max-w-7xl mx-auto pt-8 mt-8 border-t border-white/5 text-center text-slate-500 text-[10px] sm:text-[11px]">
             &copy; 2026 Rihan Ecom Store. All rights reserved.
         </div>
     </footer>
